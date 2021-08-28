@@ -308,7 +308,7 @@ if test "x$build_avrada" = "xyes" ; then
 
     cd $AVR_BUILD
 
-    unpack_package AVRADA
+    #unpack_package AVRADA
 
     cd $AVR_BUILD/$FILE_AVRADA
 
