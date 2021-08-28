@@ -18,7 +18,7 @@ FILE_MPFR="mpfr-$VER_MPFR"
 FILE_MPC="mpc-$VER_MPC"
 FILE_GMP="gmp-$VER_GMP"
 FILE_LIBC="avr-libc-$VER_LIBC"
-FILE_AVRADA="avr-ada-$VER_AVRADA"
+FILE_AVRADA="avr-ada"
 FILE_AVRDUDE="avrdude-$VER_AVRDUDE"
 
 BINUTILS_TAR="binutils-$VER_BINUTILS.tar.bz2"
