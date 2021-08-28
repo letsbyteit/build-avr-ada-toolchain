@@ -120,16 +120,16 @@ if test "x$build_binutils" = "xyes" ; then
 
 
     display "Make binutils bfd-headers ... (log in $AVR_BUILD/step12_bin_make.log)"
-    make all-bfd TARGET-bfd=headers &>$AVR_BUILD/step12_bin_make_bfd_headers.log
+    make -j4 all-bfd TARGET-bfd=headers &>$AVR_BUILD/step12_bin_make_bfd_headers.log
     rm -f bfd/Makefile
-    make configure-host             &>$AVR_BUILD/step13_bin_configure.log
+    make -j4 configure-host             &>$AVR_BUILD/step13_bin_configure.log
     check_return_code
 
-    make all                        &>$AVR_BUILD/step14_bin_make_all.log
+    make -j4 all                        &>$AVR_BUILD/step14_bin_make_all.log
     check_return_code
 
     display "Install binutils ...   (log in $AVR_BUILD/step18_bin_install.log)"
-    make install &>$AVR_BUILD/step18_bin_install.log
+    make -j4 install &>$AVR_BUILD/step18_bin_install.log
     check_return_code
 fi
 
@@ -198,11 +198,11 @@ if test "$build_gcc" = "yes" ; then
     check_return_code
 
     display "Make GCC/GNAT ...     (log in $AVR_BUILD/step22_gcc_gcc_obj.log)"
-    make &> $AVR_BUILD/step22_gcc_gcc_obj.log
+    make -j4 &> $AVR_BUILD/step22_gcc_gcc_obj.log
     check_return_code
 
     display "Make GNAT Tools ...   (log in $AVR_BUILD/step23_gcc_tools_obj.log)"
-    make -C gcc cross-gnattools ada.all.cross &> $AVR_BUILD/step23_gcc_gcc_obj.log
+    make -j4 -C gcc cross-gnattools ada.all.cross &> $AVR_BUILD/step23_gcc_gcc_obj.log
     check_return_code
 
     #display "Make RTS ...          (log in $AVR_BUILD/step24_gcc_rts_obj.log)"
@@ -212,7 +212,7 @@ if test "$build_gcc" = "yes" ; then
     display "Install GCC ...       (log in $AVR_BUILD/step28_gcc_install.log)"
 
     cd $AVR_BUILD/gcc-obj
-    make install &>$AVR_BUILD/step28_gcc_install.log
+    make -j4 install &>$AVR_BUILD/step28_gcc_install.log
     check_return_code
 
     display "Adding GCC symlinks..."
@@ -243,11 +243,11 @@ if test "x$build_libc" = "xyes" ; then
     check_return_code
 
     display "Make AVR-LIBC ...       (log in $AVR_BUILD/step32_libc_make.log)"
-    make &>$AVR_BUILD/step32_libc_make.log
+    make -j4 &>$AVR_BUILD/step32_libc_make.log
     check_return_code
 
     display "Install AVR-LIBC ...    (log in $AVR_BUILD/step38_libc_install.log)"
-    make install &>$AVR_BUILD/step38_libc_install.log
+    make -j4 install &>$AVR_BUILD/step38_libc_install.log
     check_return_code
 fi
 print_time >> $AVR_BUILD/time_run.log
@@ -271,11 +271,11 @@ if test "x$build_avrdude" = "xyes" ; then
     check_return_code
 
     display "Make avrdude ...       (log in $AVR_BUILD/step42_avrdude_make.log)"
-    make &>$AVR_BUILD/step42_avrdude_make.log
+    make -j4 &>$AVR_BUILD/step42_avrdude_make.log
     check_return_code
 
     display "Install avrdude ...    (log in $AVR_BUILD/step48_avrdude_install.log)"
-    make install &>$AVR_BUILD/step48_avrdude_install.log
+    make -j4 install &>$AVR_BUILD/step48_avrdude_install.log
     check_return_code
 fi
 print_time >> $AVR_BUILD/time_run.log
@@ -294,11 +294,11 @@ if test "x$build_avradarts" = "xyes" ; then
     cd $AVR_BUILD/$FILE_AVRADARTS
     
     display "build AVR-Ada RTS ... (log in $AVR_BUILD/step62_avrada_rts_make.log)"
-    make -d build_rts >& ../step62_avrada_rts_make.log
+    make -j4 -d build_rts >& ../step62_avrada_rts_make.log
     check_return_code
     
     display "install AVR-Ada RTS ... (log in $AVR_BUILD/step68_avrada_rts_install.log)"
-    make install_rts >& ../step68_avrada_rts_install.log
+    make -j4 install_rts >& ../step68_avrada_rts_install.log
     check_return_code
 fi
 
@@ -313,9 +313,9 @@ if test "x$build_avrada" = "xyes" ; then
     cd $AVR_BUILD/$FILE_AVRADA
 
     display "build AVR-Ada libs ... (log in $AVR_BUILD/step14_avrada_libs.log)"
-    make build_libs >& ../step14_avrada_libs.log
+    make -j4 build_libs >& ../step14_avrada_libs.log
     check_return_code
-    make install_libs >& ../step14_avrada_libs_inst.log
+    make -j4 install_libs >& ../step14_avrada_libs_inst.log
     check_return_code
 fi
 
